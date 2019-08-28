@@ -20,7 +20,7 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     services.register(middlewares)
 
     // Configure a SQLite database
-    let db = try MySQLDatabase(config: MySQLDatabaseConfig(hostname: "fsm.com.mx", port: 3306, username: "nutripeerking", password: "linecon0", database: "nutripeer"))
+    let db = MySQLDatabase(config: MySQLDatabaseConfig(hostname: "fsm.com.mx", port: 3306, username: "nutripeerking", password: "linecon0", database: "nutripeer"))
 
     // Register the configured SQLite database to the database config.
     var databases = DatabasesConfig()
