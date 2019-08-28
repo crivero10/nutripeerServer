@@ -37,7 +37,7 @@ final class Person: MySQLModel {
         self.weightkg = weightkg
         self.goal = goal
         self.activity = activity
-        self.hashcode = randomString(length: 24)
+        self.hashcode = hashcode
     }
     
     
