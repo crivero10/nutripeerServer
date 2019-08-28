@@ -47,16 +47,15 @@ extension Person: Content { }
 extension Person: MySQLMigration { }
 
 func randomString(length: Int) -> String {
-
-    let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-    let len = UInt32(letters.length)
-
+    let allowedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    let allowedCharsCount = UInt32(allowedChars.characters.count)
     var randomString = ""
 
-    for _ in 0 ..< length {
-        let rand = arc4random_uniform(len)
-        var nextChar = letters.character(at: Int(rand))
-        randomString += NSString(characters: &nextChar, length: 1) as String
+    for _ in 0..<length {
+        let randomNum = Int(arc4random_uniform(allowedCharsCount))
+        let randomIndex = allowedChars.index(allowedChars.startIndex, offsetBy: randomNum)
+        let newCharacter = allowedChars[randomIndex]
+        randomString += String(newCharacter)
     }
 
     return randomString
