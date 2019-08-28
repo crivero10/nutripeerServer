@@ -23,7 +23,7 @@ final class Person: MySQLModel {
     var weightkg: Double
     var goal: String
     var activity: String
-
+    var hashcode: String
 
     /// Creates a new user.
     init(id: Int? = nil, firstName: String,lastName: String,dob: Date,sex: String,units: String,heightcm: Int,weightkg: Double,goal: String,activity: String) {
@@ -37,10 +37,16 @@ final class Person: MySQLModel {
         self.weightkg = weightkg
         self.goal = goal
         self.activity = activity
-        
+        self.hashcode = randomString(length: 24)
     }
+    
+    
 }
 
 extension Person: Content { }
 extension Person: MySQLMigration { }
 
+func randomString(length: Int) -> String {
+  let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+  return String((0..<length).map{ _ in letters.randomElement()! })
+}
