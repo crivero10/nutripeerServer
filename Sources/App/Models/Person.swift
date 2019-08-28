@@ -26,7 +26,7 @@ final class Person: MySQLModel {
     var hashcode: String
 
     /// Creates a new user.
-    init(id: Int? = nil, firstName: String,lastName: String,dob: Date,sex: String,units: String,heightcm: Int,weightkg: Double,goal: String,activity: String) {
+    init(id: Int? = nil, firstName: String,lastName: String,dob: Date,sex: String,units: String,heightcm: Int,weightkg: Double,goal: String,activity: String, hashcode: String) {
         self.id = id
         self.firstName = firstName
         self.lastName = lastName
