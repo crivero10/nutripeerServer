@@ -9,14 +9,23 @@ import Foundation
 
 import Foundation
 import Vapor
+
+struct UserByHashcodeRequest: Content{
+    var hashcode : String
+}
+
 final class PersonController {
     func index(_ req: Request) throws -> Future<[Person]> {
         return Person.query(on: req).all()
     }
     
-    func userByHash(_ req: Request) throws -> Future<Person>{
-        let codeqrhash = req.json["hello"]?.string
-        return Person.query(on: req).filter(\.hashcode == codeqrhash)
+    func userByHash(_ req: Request) throws -> Future<HTTPStatus>{
+        return try! req.content.decode(UserByHashcodeRequest.self).map(to: HTTPStatus.self) { ubhreq in
+            print(ubhreq.hashcode)
+            return .ok
+        }
+        
+        
     }
     
     func create(_ req: Request) throws -> Future<Person> {

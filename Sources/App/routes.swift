@@ -19,7 +19,7 @@ public func routes(_ router: Router) throws {
 
     // Example of configuring a controller
     let personController = PersonController()
-    
+    router.get("personbyhash", use: personController.userByHash)
     router.post("person", use: personController.create)
     
 }
