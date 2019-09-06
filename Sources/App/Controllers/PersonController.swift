@@ -15,7 +15,7 @@ final class PersonController {
     }
     
     func userByHash(_ req: Request) throws -> Future<Person>{
-        let codeqrhash = req.json["hashcode"]
+        let codeqrhash = req.json["hello"]?.string
         return Person.query(on: req).filter(\.hashcode == codeqrhash)
     }
     
